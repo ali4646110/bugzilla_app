@@ -1,0 +1,37 @@
+<div style="padding: 20px; font-family: sans-serif; max-width: 500px;">
+  <h1>Report a New Bug</h1>
+
+  <%= form_with(model: [@project, @bug], local: true) do |form| %>
+    <% if @bug.errors.any? %>
+      <div style="color: red; margin-bottom: 20px;">
+        <ul>
+          <% @bug.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div style="margin-bottom: 15px;">
+      <%= form.label :title, "Bug Title / Summary", style: "display: block; font-weight: bold; margin-bottom: 5px;" %>
+      <%= form.text_field :title, style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" %>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <%= form.label :description, "Steps to Reproduce", style: "display: block; font-weight: bold; margin-bottom: 5px;" %>
+      <%= form.text_area :description, rows: 4, style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" %>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <%= form.label :status, "Current Status", style: "display: block; font-weight: bold; margin-bottom: 5px;" %>
+      <%= form.select :status, ['New', 'Started', 'Resolved'], {}, style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" %>
+    </div>
+
+    <div>
+      <%= form.submit "Log Bug", style: "background-color: #dc2626; color: white; padding: 10px 15px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;" %>
+    </div>
+  <% end %>
+
+  <br>
+  <%= link_to 'Cancel and Go Back', project_path(@project), style: "color: #4b5563;" %>
+</div>

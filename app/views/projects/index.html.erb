@@ -1,0 +1,42 @@
+<div style="padding: 20px; font-family: sans-serif;">
+  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 10px;">
+    <h1>Project Dashboard</h1>
+    <% if policy(Project).new? %>
+      <%= link_to 'Create New Project', new_project_path, style: "background-color: #2563eb; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; font-weight: bold;" %>
+    <% end %>
+  </div>
+
+  <p style="color: green;"><%= notice %></p>
+
+  <div style="margin-top: 20px;">
+    <% if @projects.any? %>
+      <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+          <tr style="background-color: #f3f4f6;">
+            <th style="padding: 12px; border: 1px solid #e5e7eb;">Project Title</th>
+            <th style="padding: 12px; border: 1px solid #e5e7eb;">Description</th>
+            <th style="padding: 12px; border: 1px solid #e5e7eb;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @projects.each do |project| %>
+            <tr style="border-bottom: 1px solid #e5e7eb;">
+              <td style="padding: 12px; font-weight: bold;"><%= project.title %></td>
+              <td style="padding: 12px; color: #4b5563;"><%= project.description %></td>
+              <td style="padding: 12px;">
+                <%= link_to 'View Details', project_path(project), style: "color: #2563eb; text-decoration: none; margin-right: 10px;" %>
+                <% if policy(project).edit? %>
+                  <%= link_to 'Edit', edit_project_path(project), style: "color: #d97706; text-decoration: none;" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <div style="text-align: center; padding: 40px; color: #6b7280; background: #f9fafb; border: 1px dashed #d1d5db;">
+        <p>No projects created yet.</p>
+      </div>
+    <% end %>
+  </div>
+</div>

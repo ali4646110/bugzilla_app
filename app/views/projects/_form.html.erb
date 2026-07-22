@@ -1,0 +1,26 @@
+<%= form_with(model: project, local: true, style: "max-width: 500px; font-family: sans-serif;") do |form| %>
+  <% if project.errors.any? %>
+    <div style="color: red; margin-bottom: 20px;">
+      <h4><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h4>
+      <ul>
+        <% project.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div style="margin-bottom: 15px;">
+    <%= form_label :title, "Project Title", style: "display: block; font-weight: bold; margin-bottom: 5px;" %>
+    <%= form.text_field :title, style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" %>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <%= form_label :description, "Description", style: "display: block; font-weight: bold; margin-bottom: 5px;" %>
+    <%= form.text_area :description, rows: 4, style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" %>
+  </div>
+
+  <div>
+    <%= form.submit "Save Project", style: "background-color: #2563eb; color: white; padding: 10px 15px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;" %>
+  </div>
+<% end %>

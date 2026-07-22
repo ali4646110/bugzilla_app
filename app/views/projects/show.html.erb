@@ -1,0 +1,29 @@
+<div style="padding: 20px; font-family: sans-serif;">
+  <div style="margin-bottom: 20px;">
+    <%= link_to '← Back to Dashboard', projects_path, style: "color: #4b5563; text-decoration: none;" %>
+  </div>
+
+  <div style="background: #f9fafb; border: 1px solid #e5e7eb; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+    <h1 style="margin-top: 0;"><%= @project.title %></h1>
+    <p style="color: #4b5563; font-size: 16px;"><%= @project.description %></p>
+    
+    <div style="margin-top: 15px;">
+      <% if policy(@project).edit? %>
+        <%= link_to 'Edit Project Info', edit_project_path(@project), style: "color: #d97706; text-decoration: none; font-weight: bold; margin-right: 15px;" %>
+      <% end %>
+      <% if policy(@project).destroy? %>
+        <%= link_to 'Delete Project', project_path(@project), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, style: "color: #dc2626; text-decoration: none; font-weight: bold;" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 10px;">
+    <h2>Bugs Logged</h2>
+    <%= link_to 'Report a New Bug', new_project_bug_path(@project), style: "background-color: #dc2626; color: white; padding: 8px 12px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 14px;" %>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <!-- We'll populate the actual bug listing code here once the BugsController logic is written next! -->
+    <p style="color: #6b7280; font-style: italic;">Bug tracking list coming up in the next step...</p>
+  </div>
+</div>
